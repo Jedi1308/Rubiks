@@ -11,6 +11,8 @@ def turn_cw_360(face):
     GPIO.output(EN_pin, GPIO.LOW)
     mymotor.motor_go(True, "1/16", 200, .0044, True, .05)
 
+# no need for this function
+
 def turn_ccw_360(face):
     mymotor = RpiMotorLib.A4988Nema(dir_pins[face], step_pins[face], (21, 21, 21), "A4988")
     GPIO.setup(EN_pin, GPIO.OUT)
