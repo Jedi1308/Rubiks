@@ -5,30 +5,25 @@ dir_pins = [20, 5]
 step_pins = [21, 6]
 EN_pin = 24
 
-def turn_cw_360(face):
-    mymotor = RpiMotorLib.A4988Nema(dir_pins[face], step_pins[face], (21, 21, 21), "A4988")
+type_switch = {
+    1: 50,
+    2: 100,
+    3: 50
+}
+
+def turn(face, num):
+    degrees = type_switch[num] 
+    mymotor = RpiMotorLib.A4988Nema(dir_pins[face], step_pins[face], (-1, -1, -1), "A4988")
     GPIO.setup(EN_pin, GPIO.OUT)
     GPIO.output(EN_pin, GPIO.LOW)
-    mymotor.motor_go(True, "1/16", 200, .0044, True, .05)
+    mymotor.motor_go(num != 3, "Full", degrees, .001, True, .05)
+    print()
 
-# no need for this function
 
-def turn_ccw_360(face):
-    mymotor = RpiMotorLib.A4988Nema(dir_pins[face], step_pins[face], (21, 21, 21), "A4988")
-    GPIO.setup(EN_pin, GPIO.OUT)
-    GPIO.output(EN_pin, GPIO.LOW)
-    mymotor.motor_go(False, "1/16", 200, .0044, True, .05)
+print('ur mom')
 
-def turn_cw_90(face):
-    mymotor = RpiMotorLib.A4988Nema(dir_pins[face], step_pins[face], (21, 21, 21), "A4988")
-    GPIO.setup(EN_pin, GPIO.OUT)
-    GPIO.output(EN_pin, GPIO.LOW)
-    mymotor.motor_go(True, "1/16", 50, .0044, True, .05)
-
-def turn_ccw_90(face):
-    mymotor = RpiMotorLib.A4988Nema(dir_pins[face], step_pins[face], (21, 21, 21), "A4988")
-    GPIO.setup(EN_pin, GPIO.OUT)
-    GPIO.output(EN_pin, GPIO.LOW)
-    mymotor.motor_go(False, "1/16", 50, .0044, True, .05)
-
+while (True):
+    a = int(input())
+    b = int(input())
+    turn(a, b)
     

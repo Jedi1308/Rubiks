@@ -18,7 +18,6 @@ import solver as sv
 
 
 # method 1
-
 def set_colors():
     solve_colors = ['U', 'R', 'F', 'D', 'L', 'B']
     cube_colors = {}
